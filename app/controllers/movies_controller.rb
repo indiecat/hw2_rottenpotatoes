@@ -7,7 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    sort_column = params[:sort].to_s
+    @movies = Movie.order(sort_column).all
   end
 
   def new
