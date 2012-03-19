@@ -6,7 +6,7 @@
     %tr
       %th= link_to "Movie Title", movies_path(:sort=>:title)
       %th Rating
-      %th= link_to "Release Date", movies_path(:sort=>:released)
+      %th= link_to "Release Date", movies_path(:sort=>:release_date)
       %th More Info
   %tbody
     - @movies.each do |movie|
