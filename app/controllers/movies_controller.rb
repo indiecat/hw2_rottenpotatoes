@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
   def index
     sort_column = params[:sort].to_s
     @movies = Movie.order(sort_column).all
+    @q{sort_column + "_class"} = "hilite"
   end
 
   def new
