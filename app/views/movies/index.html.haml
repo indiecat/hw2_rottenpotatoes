@@ -4,10 +4,10 @@
 %table#movies
   %thead
     %tr
-      %th
+      %th{:class => (params[:sort] == "title") ? :hilite : :none}
         %a#title_header{:href => movies_path(:sort=>:title)} Movie Title
       %th Rating
-      %th
+      %th{:class => (params[:sort] == "release_date") ? :hilite : :none}
         %a#release_date_header{:href => movies_path(:sort=>:release_date)} Release Date
       %th More Info
   %tbody
