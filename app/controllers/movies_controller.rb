@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = ['G','PG','PG- 13','R']
     sort_column = params[:sort].to_s
     @movies = Movie.order(sort_column).all
   end
