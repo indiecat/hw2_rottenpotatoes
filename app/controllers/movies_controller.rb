@@ -7,9 +7,13 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = ['G','PG','PG- 13','R']
+    @all_ratings = Movie.get_all_ratings
+    if params[:ratings]
+      @checked_ratings = params[:ratings].keys
+    else @checked_ratings = @all_ratings
+    end
     sort_column = params[:sort].to_s
-    @movies = Movie.order(sort_column).all
+    @movies = Movie.order(sort_column).find_all_by_rating(@checked_ratings)
   end
 
   def new
