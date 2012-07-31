@@ -13,10 +13,10 @@
   %thead
     %tr
       %th{:class => (params[:sort] == "title") ? :hilite : :none}
-        %a#title_header= link_to 'Movie Title', movies_path(params.merge :sort=>:title)
+        = link_to 'Movie Title', movies_path(params.merge :sort=>:title), :id => "title_header"
       %th Rating
       %th{:class => (params[:sort] == "release_date") ? :hilite : :none}
-        %a#release_date_header= link_to 'Release Date', movies_path(params.merge :sort=>:release_date)
+        = link_to 'Release Date', movies_path(params.merge :sort=>:release_date), :id => "release_date_header"
       %th More Info
   %tbody
     - @movies.each do |movie|
