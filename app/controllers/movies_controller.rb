@@ -11,11 +11,10 @@ class MoviesController < ApplicationController
     sort_column = params[:sort].to_s
     if params[:ratings]
       @checked_ratings = params[:ratings].keys
-      @movies = Movie.order(sort_column).find_all_by_rating(@checked_ratings)
     else
       @checked_ratings = []
-      @movies = Movie.order(sort_column).all
     end
+    @movies = Movie.order(sort_column).find_all_by_rating(@checked_ratings)
   end
 
   def new
