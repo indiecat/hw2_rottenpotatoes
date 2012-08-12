@@ -10,8 +10,10 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
     if params[:sort]
       session.merge! :sort => params[:sort]
+      sort_column = params[:sort]
+    else
+      sort_column = session[:sort]
     end
-    sort_column = session[:sort]
     @checked_ratings = []
     if params[:ratings]
       session.merge! :ratings => params[:ratings]
