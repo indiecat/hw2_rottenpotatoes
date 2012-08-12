@@ -24,9 +24,9 @@ class MoviesController < ApplicationController
       end
     end
     @movies = Movie.order(sort_column).find_all_by_rating(@checked_ratings)
-    if (!params[:sort] || !params[:ratings])
+    if (!params[:r])
       flash.keep
-      redirect_to movies_path(params.merge :sort => session[:sort], :ratings => session[:ratings])
+      redirect_to movies_path(params.merge :sort => session[:sort], :ratings => session[:ratings], :r => 1)
     end
   end
 
