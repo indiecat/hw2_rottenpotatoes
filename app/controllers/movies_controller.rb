@@ -8,13 +8,24 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.get_all_ratings
-    sort_column = params[:sort].to_s
+    if params[:sort]
+      session.merge! :sort => params[:sort]
+    end
+    sort_column = session[:sort]
+    @checked_ratings = []
     if params[:ratings]
+      session.merge! :ratings => params[:ratings]
       @checked_ratings = params[:ratings].keys
     else
-      @checked_ratings = []
+      if session[:ratings]
+        @checked_ratings = session[:ratings].keys
+      end
     end
     @movies = Movie.order(sort_column).find_all_by_rating(@checked_ratings)
+    if (!params[:sort] || !params[:ratings])
+      flash.keep
+      redirect_to movies_path(params.merge :sort => session[:sort], :ratings => session[:ratings])
+    end
   end
 
   def new
